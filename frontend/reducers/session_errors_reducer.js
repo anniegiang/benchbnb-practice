@@ -14,3 +14,5 @@ const sessionErrors = (state = [], action) => {
       return state;
   }
 };
+
+export default sessionErrors;
