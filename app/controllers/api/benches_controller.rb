@@ -12,7 +12,7 @@ class Api::BenchesController < ApplicationController
   def bench_params
     params.require(:bench).permit(
       :lat,
-      :long,
+      :lng,
       :description,
     )
   end

@@ -9,6 +9,6 @@
 #
 
 class Bench < ApplicationRecord
-  validates :description, :lat, :long, presence: true
+  validates :description, :lat, :lng, presence: true
   
 end
