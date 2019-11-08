@@ -477,12 +477,12 @@ function (_React$Component) {
       };
       this.map = new google.maps.Map(this.mapNode, mapOptions);
       this.MarkerManager = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__["default"](this.map);
-      this.MarkerManager.updateMarkers();
+      this.MarkerManager.updateMarkers(this.props.benches);
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      this.MarkerManager.updateMarkers();
+      this.MarkerManager.updateMarkers(this.props.benches);
     }
   }, {
     key: "render",
@@ -1164,7 +1164,30 @@ function () {
   _createClass(MarkerManager, [{
     key: "updateMarkers",
     value: function updateMarkers(benches) {
-      console.log("time to update");
+      var _this = this;
+
+      benches.forEach(function (bench) {
+        if (!(bench.id in _this.markers)) {
+          _this.createMarkerFromBench(bench);
+        }
+      });
+    }
+  }, {
+    key: "createMarkerFromBench",
+    value: function createMarkerFromBench(bench) {
+      var lat = bench.lat,
+          lng = bench.lng,
+          description = bench.description;
+      var marker = new google.maps.Marker({
+        position: {
+          lat: lat,
+          lng: lng
+        },
+        map: this.map,
+        title: description
+      });
+      this.markers[bench.id] = marker;
+      marker.setMap(this.map);
     }
   }]);
 
